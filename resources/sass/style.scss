@@ -1,0 +1,50 @@
+body {
+    background: #fff;
+}
+#card-holder div {
+    width: 100%;
+}
+
+.checkout-order-wrapper {
+    background-color: #f8f8f8;
+    padding: 40px 30px;
+    margin-top: 8px;
+    .checkout-order-table {
+        background-color: #fff;
+        padding: 20px 25px 0 25px;
+        width: 100%;
+        tr, th, td {
+            padding: 15px 10px;
+        }
+        td, th {
+            border: none;
+            width: 50%;
+            max-width: 50%;
+        }
+        .product-total {
+            text-align: right;
+        }
+        .cart_item {
+            .product-name {
+                font-size: 16px;
+            }
+            .product-quantity {
+                font-size: 12px;
+            }
+        }
+
+        .table-shipping-methods {
+            text-align: right;
+            li {
+                list-style-type: none;
+
+            }
+        }
+        .order-total {
+            font-size: 30px;
+            td {
+                text-align: right;
+            }
+        }
+    }
+}
