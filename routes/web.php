@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-use App\Models\Brand;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,5 +24,4 @@ Route::post('/checkout', [OrderController::class, 'checkout']);
  */
 Route::post('/add-to-cart', [OrderController::class, 'addProductToCart']);
 Route::post('/update-shipping', [OrderController::class, 'updateShippingCost']);
-Route::post('/render-order-table',[OrderController::class,'renderCheckoutTable']);
-
+Route::post('/render-order-table', [OrderController::class,'renderCheckoutTable']);

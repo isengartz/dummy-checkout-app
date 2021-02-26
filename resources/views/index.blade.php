@@ -3,5 +3,9 @@
 @section('title','Dummy Homepage')
 
 @section('content')
-    <div id="product-list" data-products='{{ json_encode($products) }}'></div>
+    @if(!empty($products))
+        <div id="product-list" data-products='{{ json_encode($products) }}'></div>
+    @else
+        <div><h4>No Products ! Add some !</h4></div>
+    @endif
 @endsection

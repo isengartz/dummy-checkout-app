@@ -3,7 +3,6 @@
 
 namespace App\Helpers;
 
-
 class LuhnChecker
 {
 
@@ -18,7 +17,6 @@ class LuhnChecker
         $clean = preg_replace('/\D/', '', $card);
 
         return self::preValidate($clean) ? self::isValid($clean) : false;
-
     }
 
     /**
@@ -67,10 +65,11 @@ class LuhnChecker
      * @param string $card
      * @return bool
      */
-    private static function isValid(string $card) : bool {
+    private static function isValid(string $card) : bool
+    {
         $formatted = intval($card.'0');
-        $nonCheckSum = (self::calculate($formatted) % 10 ) === 0 ? true : false;
-        $checkSummed = (self::calculate($formatted.self::calculateChecksum($formatted)) % 10 ) === 0 ? true : false;
+        $nonCheckSum = (self::calculate($formatted) % 10) === 0 ? true : false;
+        $checkSummed = (self::calculate($formatted.self::calculateChecksum($formatted)) % 10) === 0 ? true : false;
 
         return $nonCheckSum || $checkSummed ? true : false;
     }

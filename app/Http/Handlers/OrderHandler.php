@@ -3,7 +3,8 @@
 
 namespace App\Http\Handlers;
 
-
+use App\Exceptions\BadRequestException;
+use App\Helpers\AppHelper;
 use App\Models\Product;
 use Illuminate\Http\Response;
 
@@ -32,7 +33,6 @@ class OrderHandler
      */
     public function updateCartProductSession(int $product_id): void
     {
-
         $cartSession = session('cart') ?? [];
         // Check if there are any other product into session else init it
         if (empty($cartSession) || empty($cartSession['products'])) {
@@ -68,7 +68,7 @@ class OrderHandler
     /**
      * Returns all the cart data required for checkout page
      * @return array
-     * @throws \Exception
+     * @throws BadRequestException
      */
     public function buildCartData(): array
     {
@@ -83,7 +83,7 @@ class OrderHandler
      * SOS: ONLY CALL THIS AFTER CheckoutRequest Validation PASSES !!!
      * @param array $data
      * @return array
-     * @throws \Exception
+     * @throws BadRequestException
      */
     public function buildOrderStoreData(array $data): array
     {
@@ -95,14 +95,14 @@ class OrderHandler
     /**
      * Returns the cart data for products
      * @return array
-     * @throws \Exception
+     * @throws BadRequestException
      */
     private function buildCartProductData(): array
     {
         $cartSession = session('cart');
 
         if (empty($cartSession["products"])) {
-            throw new \Exception('Cart is empty', Response::HTTP_BAD_REQUEST);
+            throw new BadRequestException('Cart is empty', Response::HTTP_BAD_REQUEST);
         }
         // extracts only the product ids from session
         $ids = array_column($cartSession["products"], "id");
@@ -111,13 +111,17 @@ class OrderHandler
         $overallCost = 0;
         // Use the session array to loop through each product and calculate the price
         foreach ($cartSession["products"] as $productKey) {
-            $overallCost += $products[$productKey["id"]]->price * $productKey["quantity"];
+            if (empty($products[$productKey["id"]])) { // this can only happen if someone throws random ids into session
+                session()->flush(); // flush the session
+                throw new BadRequestException("Session Data is polluted", Response::HTTP_BAD_REQUEST);
+            }
+            $overallCost += AppHelper::denormalizePriceData($products[$productKey["id"]]->price) * intval($productKey["quantity"]);
         }
 
         return [
             "products" => $products,
             "cartProducts" => $cartSession["products"],
-            "productCost" => $overallCost
+            "productCost" => AppHelper::normalizePriceData($overallCost)
         ];
     }
 

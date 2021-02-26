@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\AppHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,4 +28,41 @@ class Order extends Model
         'client_address'
     ];
 
+    /**
+     * Accessor so we can show the price as float in the frontend
+     * @param $value
+     * @return float
+     */
+    public function getTotalProductValueAttribute($value) : float
+    {
+        return AppHelper::normalizePriceData($value);
+    }
+
+    /**
+     * Mutator so we can store the price as integer
+     * @param $value
+     */
+    public function setTotalProductValueAttribute($value) : void
+    {
+        $this->attributes['total_product_value'] = AppHelper::denormalizePriceData($value);
+    }
+
+    /**
+     * Accessor so we can show the price as float in the frontend
+     * @param $value
+     * @return float
+     */
+    public function getTotalShippingValueAttribute($value) : float
+    {
+        return AppHelper::normalizePriceData($value);
+    }
+
+    /**
+     * Mutator so we can store the price as integer
+     * @param $value
+     */
+    public function setTotalShippingValueAttribute($value) : void
+    {
+        $this->attributes['total_shipping_value'] = AppHelper::denormalizePriceData($value);
+    }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Helpers\AppHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Product extends Model
 {
@@ -31,19 +33,22 @@ class Product extends Model
      * @param $value
      * @return float
      */
-    public function getPriceAttribute($value) : float {
-        return $value / 100;
+    public function getPriceAttribute($value) : float
+    {
+        return AppHelper::normalizePriceData($value);
     }
 
     /**
      * Mutator so we can store the price as integer
      * @param $value
      */
-    public function setPriceAttribute($value) : void  {
-        $this->attributes['price'] = number_format($value,2) * 100;
+    public function setPriceAttribute($value) : void
+    {
+        $this->attributes['price'] = AppHelper::denormalizePriceData($value);
     }
 
-    public function brand() {
+    public function brand()
+    {
         return $this->belongsTo(Brand::class);
     }
 }
