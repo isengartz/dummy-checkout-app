@@ -21,17 +21,17 @@ CREATE TABLE IF NOT EXISTS `brands` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table eshopdb.brands: ~5 rows (approximately)
 DELETE FROM `brands`;
 /*!40000 ALTER TABLE `brands` DISABLE KEYS */;
 INSERT INTO `brands` (`id`, `name`) VALUES
-	(7, 'Robel-Stark'),
-	(8, 'Gaylord, Luettgen and Cole'),
-	(9, 'Rau Inc'),
-	(10, 'Cartwright-Beier'),
-	(11, 'Stehr-Yost');
+	(1, 'Kris Inc'),
+	(2, 'Kuhn PLC'),
+	(3, 'Runolfsdottir, Mayert and Mohr'),
+	(4, 'Cummerata, Goyette and Brekke'),
+	(5, 'Doyle Group');
 /*!40000 ALTER TABLE `brands` ENABLE KEYS */;
 
 -- Dumping structure for table eshopdb.failed_jobs
@@ -80,13 +80,11 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `client_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `client_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table eshopdb.orders: ~1 rows (approximately)
+-- Dumping data for table eshopdb.orders: ~0 rows (approximately)
 DELETE FROM `orders`;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` (`id`, `total_product_value`, `total_shipping_value`, `client_name`, `client_address`) VALUES
-	(2, 41200, 1000, 'adasdasd', 'asdadsadsads');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 
 -- Dumping structure for table eshopdb.password_resets
@@ -111,32 +109,32 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`),
   KEY `products_brand_id_foreign` (`brand_id`),
   CONSTRAINT `products_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table eshopdb.products: ~20 rows (approximately)
 DELETE FROM `products`;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `name`, `price`, `brand_id`) VALUES
-	(22, 'nam', 7300, 10),
-	(23, 'voluptas', 97500, 11),
-	(24, 'et', 26600, 11),
-	(25, 'omnis', 46600, 10),
-	(26, 'occaecati', 62300, 7),
-	(27, 'doloremque', 92100, 8),
-	(28, 'consectetur', 3300, 8),
-	(29, 'optio', 80200, 11),
-	(30, 'voluptatibus', 87400, 8),
-	(31, 'aut', 20300, 8),
-	(32, 'dolore', 4500, 8),
-	(33, 'quam', 64700, 11),
-	(34, 'ut', 99600, 10),
-	(35, 'laborum', 68500, 9),
-	(36, 'veritatis', 94100, 11),
-	(37, 'fugiat', 16700, 11),
-	(38, 'a', 76700, 9),
-	(39, 'facilis', 38500, 7),
-	(40, 'nihil', 21200, 11),
-	(41, 'veniam', 300, 7);
+	(1, 'eligendi', 66400, 2),
+	(2, 'corporis', 65200, 3),
+	(3, 'velit', 66600, 3),
+	(4, 'quaerat', 9500, 3),
+	(5, 'laudantium', 85900, 4),
+	(6, 'quia', 31400, 4),
+	(7, 'eum', 40400, 5),
+	(8, 'quidem', 73500, 3),
+	(9, 'nam', 24300, 1),
+	(10, 'rem', 56600, 2),
+	(11, 'deleniti', 85100, 5),
+	(12, 'perspiciatis', 85300, 3),
+	(13, 'blanditiis', 68600, 3),
+	(14, 'laborum', 9300, 4),
+	(15, 'ut', 38700, 2),
+	(16, 'nemo', 63000, 5),
+	(17, 'suscipit', 8800, 5),
+	(18, 'optio', 88300, 2),
+	(19, 'aperiam', 18900, 2),
+	(20, 'quia', 13500, 1);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table eshopdb.users

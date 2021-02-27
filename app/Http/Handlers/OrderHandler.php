@@ -49,7 +49,7 @@ class OrderHandler
             // else push it into array
             array_push($cartSession['products'], ["id" => $product_id, "quantity" => 1]);
         }
-        // Add product into Session and return a success response
+        // Add product into Session
         session(['cart' => $cartSession]);
     }
 

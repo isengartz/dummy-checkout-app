@@ -46,12 +46,16 @@ const ProductItem = ({id, name, price, brand, onClick}) => {
         return formatter.format(price);
     }
     return (
-        <div className="col-6 col-sm-4 col-md-3 ">
-            <div className="border rounded text-center p-2 m-2">
-                <h3>{name}</h3>
-                <p>{brand}</p>
-                <p>{formatPrice(price)}</p>
-                <button onClick={() => onClick(id)} className="btn btn-primary buy-btn">BUY</button>
+        <div className="col-6 col-sm-4 col-md-4 ">
+            <div className="border rounded text-center m-2">
+                <img width="100%" alt="random-image" src="https://picsum.photos/seed/picsum/300/300" />
+                <div className="p-2">
+                    <h3 className="mt-2 font-weight-bolder text-uppercase">{name}</h3>
+                    <small>{brand}</small>
+                    <p className="font-italic font-weight-bold m-2">{formatPrice(price)}</p>
+                    <button onClick={() => onClick(id)} className="btn btn-primary buy-btn">BUY</button>
+                </div>
+
             </div>
 
         </div>

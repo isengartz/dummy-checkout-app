@@ -14,7 +14,7 @@ class CheckoutRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize() : bool
     {
         return true;
     }
@@ -22,7 +22,7 @@ class CheckoutRequest extends FormRequest
     /**
      * Executes before the rules function
      */
-    protected function prepareForValidation()
+    protected function prepareForValidation() : void
     {
         $this->merge([
             'expiryDate' => str_replace(' ', '', $this->expiryDate),
@@ -31,10 +31,9 @@ class CheckoutRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
      * @return array
      */
-    public function rules()
+    public function rules() : array
     {
         return [
             'client_name' => 'required', // To full validate this we should also check if its 2 words
