@@ -15,14 +15,14 @@ class Product extends Model
      * Dont add Timestamps
      * @var bool
      */
-    public bool $timestamps = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected array $fillable = [
+    protected $fillable = [
         'name',
         'price',
         'brand_id'

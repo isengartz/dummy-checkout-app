@@ -14,14 +14,14 @@ class Order extends Model
      * Dont add Timestamps
      * @var bool
      */
-    public bool $timestamps = false;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected array $fillable = [
+    protected $fillable = [
         'total_product_value',
         'total_shipping_value',
         'client_name',

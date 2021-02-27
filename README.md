@@ -7,7 +7,8 @@ Super dummy implementation of product buy functionality. It supports multiple pr
 - run `mv .env.example .env`
 - run `composer install`
 - run `npm install`
-- run `docker-composer up`
+- run `npm run prod`
+- run `docker-compose up`
 
 The project should be deployed at `http://127.0.0.1:5050`
 
@@ -32,7 +33,7 @@ the only env variables that you need to setup while deploying via docker is `MAI
 - run `composer install`
 - run `npm install`
 - run `php artisan migrate && php arisan db:seed`
-- run `npm run watch`
+- run `npm run prod`
 - run `php artisan serve`
 
 
